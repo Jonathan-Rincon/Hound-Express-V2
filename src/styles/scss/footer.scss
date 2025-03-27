@@ -1,0 +1,11 @@
+.footer {
+    background-color: $primary-color;
+    color: #ffffff;
+    text-align: center;
+    padding: $padding;
+
+    &__link {
+        color: $secondary-color;
+        text-decoration: none;
+    }
+}

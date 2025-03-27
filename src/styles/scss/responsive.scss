@@ -1,0 +1,79 @@
+// Responsividad
+@include respond(small) {
+    .header__banner {
+        flex-direction: column;
+    }
+
+    .main-content__form {
+        gap: 0.5rem;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+    .main-content__lista {
+        overflow-x: auto;
+    }
+}
+
+@include respond(medium) {
+    .header__nav--list {
+        flex-wrap: wrap;
+    }
+
+    .main-content__lista__table {
+        font-size: 0.9rem;
+    }
+    .main-content__lista {
+        overflow-x: auto;
+    }
+}
+.modal {
+    display: none; /* Inicialmente no visible */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &.modal--visible {
+        display: flex; /* Se muestra cuando se añade esta clase */
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__content {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 500px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    &__close {
+        color: #091E3F;
+        float: right;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            color: #072C4A; /* Azul más oscuro */
+        }
+    }
+
+    &__list {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #f4f4f4;
+            border-left: 4px solid #6AC6DE;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+.header {
+    background-color: $primary-color;
+    color: #ffffff;
+    padding: $padding;
+
+    &__banner {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    &__logo {
+        width: 100px;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    &__nav {
+        &--list {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        &--link {
+            color: $secondary-color;
+            text-decoration: none;
+        }
+    }
+}
