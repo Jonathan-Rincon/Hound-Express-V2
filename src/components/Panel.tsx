@@ -1,12 +1,10 @@
 import React from 'react';
-import { Guide } from '../types/Guide';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
-interface PanelProps {
-    guides: Guide[];
-}
+const Panel: React.FC = () => {
+    const guides = useSelector((state: RootState) => state.guides.guides);
 
-const Panel: React.FC<PanelProps> = ({ guides }) => {
-    // Calcular los contadores con base en los estados de las guías
     const totalGuias = guides.length;
     const guiasEnTransito = guides.filter(guide => guide.estado === 'En tránsito').length;
     const guiasEntregadas = guides.filter(guide => guide.estado === 'Entregado').length;

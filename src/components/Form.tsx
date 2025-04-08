@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addGuide } from '../store/guidesSlice';
 import { Guide } from '../types/Guide';
 
-interface FormProps {
-    onRegister: (guide: Guide) => void;
-}
-
-const Form: React.FC<FormProps> = ({ onRegister }) => {
+const Form: React.FC = () => {
+    const dispatch = useDispatch();
     const [formState, setFormState] = useState<Guide>({
         numeroGuia: '',
         origen: '',
@@ -27,7 +26,7 @@ const Form: React.FC<FormProps> = ({ onRegister }) => {
             alert('Por favor, completa todos los campos.');
             return;
         }
-        onRegister({ ...formState, historial: [`Creado con estado: ${formState.estado}`] });
+        dispatch(addGuide({ ...formState, historial: [`Creado con estado: ${formState.estado}`] }));
         setFormState({
             numeroGuia: '',
             origen: '',
@@ -51,12 +50,6 @@ const Form: React.FC<FormProps> = ({ onRegister }) => {
             <input name="destinatario" value={formState.destinatario} onChange={handleChange} className="main-content__form--input" />
             <label className="main-content__form--label">Fecha:</label>
             <input type="date" name="fecha" value={formState.fecha} onChange={handleChange} className="main-content__form--input" />
-            <label className="main-content__form--label">Estado:</label>
-            <select name="estado" value={formState.estado} onChange={handleChange} className="main-content__form--select">
-                <option>Pendiente</option>
-                <option>En tránsito</option>
-                <option>Entregado</option>
-            </select>
             <button className="main-content__form--button" type="submit">Registrar</button>
         </form>
     );
