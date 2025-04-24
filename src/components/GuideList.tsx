@@ -5,7 +5,7 @@ import { RootState } from '../store/store';
 import { updateGuideStatus } from '../store/guidesSlice';
 
 const GuideList: React.FC = () => {
-    const guides = useSelector((state: RootState) => state.guides.guides);
+    const guides = useSelector((state: RootState) => state.guides?.guides || []); // Si no hay datos, retorna un array vacío
     const dispatch = useDispatch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,29 +47,35 @@ const GuideList: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {guides.map((guide, index) => (
-                        <tr key={guide.numeroGuia}>
-                            <td>{guide.numeroGuia}</td>
-                            <td>{guide.estado}</td>
-                            <td>{guide.origen}</td>
-                            <td>{guide.destino}</td>
-                            <td>{guide.fecha}</td>
-                            <td>
-                                <button 
-                                    className="main-content__button" 
-                                    onClick={() => handleUpdateStatus(index)}
-                                >
-                                    Actualizar Estado
-                                </button>
-                                <button 
-                                    className="main-content__button" 
-                                    onClick={() => handleShowHistory(index)}
-                                >
-                                    Historial
-                                </button>
-                            </td>
+                    {guides.length > 0 ? (
+                        guides.map((guide, index) => (
+                            <tr key={guide.numeroGuia}>
+                                <td>{guide.numeroGuia}</td>
+                                <td>{guide.estado}</td>
+                                <td>{guide.origen}</td>
+                                <td>{guide.destino}</td>
+                                <td>{guide.fecha}</td>
+                                <td>
+                                    <button
+                                        className="main-content__button"
+                                        onClick={() => handleUpdateStatus(index)}
+                                    >
+                                        Actualizar Estado
+                                    </button>
+                                    <button
+                                        className="main-content__button"
+                                        onClick={() => handleShowHistory(index)}
+                                    >
+                                        Historial
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan={6}>No hay guías disponibles</td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
             <Modal
