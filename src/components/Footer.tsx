@@ -2,12 +2,22 @@ import React from 'react';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="footer">
+        <footer className="footer" aria-label="Pie de página de Hound Express">
             <p>&copy; 2025 Hound Express. Todos los derechos reservados.</p>
-            <p>
-                <a href="#" className="footer__link">Política de privacidad</a> | 
-                <a href="#" className="footer__link">Contacto</a>
-            </p>
+            <nav aria-label="Enlaces legales y de contacto">
+                <ul className="footer__list">
+                    <li>
+                        <a href="/privacidad" className="footer__link" aria-label="Leer la política de privacidad">
+                            Política de privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/contacto" className="footer__link" aria-label="Ir a la página de contacto">
+                            Contacto
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </footer>
     );
 };

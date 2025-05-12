@@ -10,11 +10,11 @@ const Panel: React.FC = () => {
     const guiasEntregadas = guides.filter(guide => guide.estado === 'Entregado').length;
 
     return (
-        <section className="main-content__estado">
-            <h2>Estado General</h2>
-            <p>Total de Guías Activas: <span>{totalGuias}</span></p>
-            <p>Guías en Tránsito: <span>{guiasEnTransito}</span></p>
-            <p>Guías Entregadas: <span>{guiasEntregadas}</span></p>
+        <section className="main-content__estado" aria-labelledby="estado-general">
+            <h2 id="estado-general">Estado General de Guías</h2>
+            <p>Total de Guías Activas: <span aria-live="polite">{totalGuias}</span></p>
+            <p>Guías en Tránsito: <span aria-live="polite">{guiasEnTransito}</span></p>
+            <p>Guías Entregadas: <span aria-live="polite">{guiasEntregadas}</span></p>
         </section>
     );
 };

@@ -39,23 +39,64 @@ const Form: React.FC = () => {
     };
 
     return (
-        <form className="main-content__form" onSubmit={handleSubmit}>
+        <form className="main-content__form" onSubmit={handleSubmit} aria-label="Formulario de registro de guía">
             <label htmlFor="numeroGuia" className="main-content__form--label">Número de Guía:</label>
-            <input id="numeroGuia" name="numeroGuia" value={formState.numeroGuia} onChange={handleChange} className="main-content__form--input" />
+            <input 
+                id="numeroGuia" 
+                name="numeroGuia" 
+                value={formState.numeroGuia} 
+                onChange={handleChange} 
+                className="main-content__form--input" 
+                aria-required="true"
+                required
+            />
 
             <label htmlFor="origen" className="main-content__form--label">Origen:</label>
-            <input id="origen" name="origen" value={formState.origen} onChange={handleChange} className="main-content__form--input" />
+            <input 
+                id="origen" 
+                name="origen" 
+                value={formState.origen} 
+                onChange={handleChange} 
+                className="main-content__form--input" 
+                aria-required="true"
+                required
+            />
 
             <label htmlFor="destino" className="main-content__form--label">Destino:</label>
-            <input id="destino" name="destino" value={formState.destino} onChange={handleChange} className="main-content__form--input" />
+            <input 
+                id="destino" 
+                name="destino" 
+                value={formState.destino} 
+                onChange={handleChange} 
+                className="main-content__form--input" 
+                aria-required="true"
+                required
+            />
 
             <label htmlFor="destinatario" className="main-content__form--label">Destinatario:</label>
-            <input id="destinatario" name="destinatario" value={formState.destinatario} onChange={handleChange} className="main-content__form--input" />
+            <input 
+                id="destinatario" 
+                name="destinatario" 
+                value={formState.destinatario} 
+                onChange={handleChange} 
+                className="main-content__form--input" 
+                aria-required="true"
+                required
+            />
 
             <label htmlFor="fecha" className="main-content__form--label">Fecha:</label>
-            <input id="fecha" type="date" name="fecha" value={formState.fecha} onChange={handleChange} className="main-content__form--input" />
+            <input 
+                id="fecha" 
+                type="date" 
+                name="fecha" 
+                value={formState.fecha} 
+                onChange={handleChange} 
+                className="main-content__form--input" 
+                aria-required="true"
+                required
+            />
 
-            <button className="main-content__form--button" type="submit">Registrar</button>
+            <button className="main-content__form--button" type="submit" aria-label="Registrar nueva guía">Registrar</button>
         </form>
     );
 };

@@ -5,7 +5,7 @@ import { RootState } from '../store/store';
 import { updateGuideStatus } from '../store/guidesSlice';
 
 const GuideList: React.FC = () => {
-    const guides = useSelector((state: RootState) => state.guides?.guides || []); // Si no hay datos, retorna un array vacío
+    const guides = useSelector((state: RootState) => state.guides?.guides || []);
     const dispatch = useDispatch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,15 +35,15 @@ const GuideList: React.FC = () => {
 
     return (
         <>
-            <table className="main-content__table">
+            <table className="main-content__table" aria-label="Lista de guías">
                 <thead>
                     <tr>
-                        <th>Número de Guía</th>
-                        <th>Estado Actual</th>
-                        <th>Origen</th>
-                        <th>Destino</th>
-                        <th>Última Actualización</th>
-                        <th>Acciones</th>
+                        <th scope="col">Número de Guía</th>
+                        <th scope="col">Estado Actual</th>
+                        <th scope="col">Origen</th>
+                        <th scope="col">Destino</th>
+                        <th scope="col">Última Actualización</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,12 +59,14 @@ const GuideList: React.FC = () => {
                                     <button
                                         className="main-content__button"
                                         onClick={() => handleUpdateStatus(index)}
+                                        aria-label={`Actualizar estado de la guía ${guide.numeroGuia}`}
                                     >
                                         Actualizar Estado
                                     </button>
                                     <button
                                         className="main-content__button"
                                         onClick={() => handleShowHistory(index)}
+                                        aria-label={`Ver historial de la guía ${guide.numeroGuia}`}
                                     >
                                         Historial
                                     </button>
@@ -73,7 +75,7 @@ const GuideList: React.FC = () => {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={6}>No hay guías disponibles</td>
+                            <td colSpan={6} aria-live="polite">No hay guías disponibles</td>
                         </tr>
                     )}
                 </tbody>

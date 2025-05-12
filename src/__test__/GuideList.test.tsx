@@ -28,6 +28,7 @@ const initialState = {
         estado: "Pendiente",
         origen: "Ciudad A",
         destino: "Ciudad B",
+        destinatario: "Juan Pérez",
         fecha: "2023-05-01",
         historial: ["Creado con estado: Pendiente"],
       },
@@ -36,6 +37,7 @@ const initialState = {
         estado: "En tránsito",
         origen: "Ciudad C",
         destino: "Ciudad D",
+        destinatario: "Ana López",
         fecha: "2023-04-28",
         historial: ["Creado con estado: Pendiente", "Estado cambiado a En tránsito"],
       },
@@ -46,7 +48,7 @@ const initialState = {
 describe("GuideList Component", () => {
   const renderWithProvider = (state = initialState) => {
     const store = configureStore({
-      reducer: { guides: guidesReducer },
+      reducer: { guides: guidesReducer }, // Reducer correctamente estructurado
       preloadedState: state,
     });
 
@@ -62,7 +64,6 @@ describe("GuideList Component", () => {
   it("Renderiza correctamente la tabla con las guías", () => {
     renderWithProvider();
 
-    // Verifica que se renderizan las filas de la tabla
     expect(screen.getByText("12345")).toBeInTheDocument();
     expect(screen.getByText("Pendiente")).toBeInTheDocument();
     expect(screen.getByText("Ciudad A")).toBeInTheDocument();
@@ -91,8 +92,7 @@ describe("GuideList Component", () => {
     const updateButton = screen.getAllByText("Actualizar Estado")[0];
     fireEvent.click(updateButton);
 
-    const expectedAction = updateGuideStatus({ index: 0, status: "En tránsito" });
-    expect(store.getState().guides.guides[0].estado).toBe("En tránsito");
+    expect(store.getState().guides.guides[0].estado).toBe("En tránsito"); // Accediendo correctamente al estado
   });
 
   it("Muestra una alerta si se intenta avanzar el estado de una guía ya entregada", () => {
@@ -104,6 +104,7 @@ describe("GuideList Component", () => {
             estado: "Entregado",
             origen: "Ciudad X",
             destino: "Ciudad Y",
+            destinatario: "Carlos Gómez",
             fecha: "2023-04-25",
             historial: ["Creado con estado: Pendiente", "Estado cambiado a Entregado"],
           },
@@ -111,7 +112,7 @@ describe("GuideList Component", () => {
       },
     };
 
-    renderWithProvider(finalState);
+    const store = renderWithProvider(finalState);
 
     const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
     const updateButton = screen.getByText("Actualizar Estado");
